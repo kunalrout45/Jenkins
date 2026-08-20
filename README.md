@@ -31,3 +31,21 @@ CHANGE_ID
 #SCM-Trigger
 github integration with Jenkins
 
+#Build with trigger - <Trigger builds remotely>
+JENKINS_URL/job/Job02/build?token=TOKEN_NAME
+http://172.16.207.100:8080/job/Job02/build?token=Kunaltoken
+##When the link is clicked then build is triggered 
+
+To trigger the build remotely we can also add build authorization plugin - <No authentication requried> 
+##Manager Jenkins>plugin>Build Authorization Token Root
+##NOTE:below link has an '&' so when you try using cli its trying to push it to bg as a job . Mitigation: use ""
+http://172.16.207.100:8080/buildByToken/build?job=Job02&token=Kunaltoken
+##EXAMPLE:
+curl "http://172.16.207.100:8080/buildByToken/build?job=Job02&token=Kunaltoken"
+
+----------------------------------------------
+##Trigger > Build after other projects are built (once parent job is build the child job is triggered)
+
+##Trigger --------> Build periodically (cron job )
+##           |
+##           |----> Poll SCM (
